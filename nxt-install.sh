@@ -58,7 +58,7 @@ fi
 
 # Applying NXT properties
 echo "[INFO] Applying NXT properties..."
-echo -e "nxt.isTestNet=true\nnxt.shareMyAddress=false" > ~/.nxt/nxt/conf/nxt.properties
+echo -e "nxt.isTestnet=true\nnxt.shareMyAddress=false" > ~/.nxt/nxt/conf/nxt.properties
 if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot applying properties in $HOME/.nxt/nxt/conf")
 	exit 1
@@ -66,7 +66,11 @@ fi
 
 # Installing NXT
 echo "[INFO] Installing NXT"
-sudo ln -s ~/.nxt/nxt/run.sh /usr/bin/nxt 
+cd /tmp
+echo "cd $HOME/.nxt/nxt && ./run.sh" > nxt
+chmod +x nxt
+sudo cp nxt /usr/bin
+rm nxt
 if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot install NXT")
 	exit 1
