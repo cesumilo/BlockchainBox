@@ -1,3 +1,8 @@
+# Clearning previous installation
+echo "[INFO] Clearning previous installation..."
+sudo rm -rf ~/.corda
+echo "[INFO] Clearning previous installation...OK."
+
 # Cloning repository
 echo "[INFO] Cloning Corda repository..."
 mkdir -p ~/.corda/git/corda
@@ -6,6 +11,7 @@ if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot clone Corda repository")
 	exit 1
 fi
+echo "[INFO] Cloning Corda repository...OK."
 
 # Cloning Corda app template
 echo "[INFO] Cloning Corda App Template..."
@@ -15,6 +21,7 @@ if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot clone Corda App Template repository")
 	exit 1
 fi
+echo "[INFO] Cloning Corda App Template...OK."
 
 # Deploy Corda Nodes
 echo "[INFO] Deploying Corda Nodes..."
@@ -29,6 +36,7 @@ if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot deploy Corda nodes")
 	exit 1
 fi
+echo "[INFO] Deploying Corda Nodes...OK."
 
 # Install Corda
 echo "[INFO] Installing Corda..."
@@ -43,5 +51,6 @@ if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot install Corda")
 	exit 1
 fi
+echo "[INFO] Installing Corda...OK."
 
 echo "[INFO] Use IntelliJ to finish installation."

@@ -1,3 +1,8 @@
+# Clean preivous installation
+echo "[INFO] Clearning previous installation..."
+sudo rm -rf ~/.zcash
+echo "[INFO] Clearning previous installation...OK."
+
 # Check usage of the script
 if [ "$#" != 2 ]; then
 	(>&2 echo -e "USAGE:\n\t./zcash-install.sh user password")
@@ -11,6 +16,7 @@ if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot install ZCash dependencies")
 	exit 1
 fi
+echo "[INFO] Installing ZCash dependencies...OK."
 
 # Installing ZCash
 echo "[INFO] Getting ZCash from git..."
@@ -32,21 +38,25 @@ if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot checkout repository of ZCash")
 	exit 1
 fi
+echo "[INFO] Getting ZCash from git...OK."
 
 # Fetch ZCash parameters
-echo "[INFO] Fetching ZCash parameters (takes ~5mins)..."
+echo "[INFO] Fetching ZCash parameters (takes ~5mins)...OK."
 ./zcutil/fetch-params.sh
 if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot fetch ZCash parameters")
 	exit 1
 fi
+echo "[INFO] Fetching ZCash parameters (takes ~5mins)...OK."
 
 echo "[INFO] Removing generated testnet..."
-rm -rf ~/.zcash/testnet3
+sudo rm -rf ~/.zcash/testnet3
+echo "[INFO] Removing generated testnet...OK."
 
 # Compile and build ZCash
 echo "[INFO] Compiling and Building ZCash (takes ~25mins)..."
 ./zcutil/build.sh -j$(nproc)
+echo "[INFO] Compiling and Building ZCash (takes ~25mins)...OK."
 
 # Applying configurations to ZCash
 echo "[INFO] Applying ZCash configurations..."
@@ -55,6 +65,7 @@ if [ "$?" != "0" ]; then
 	(>&2 echo "[ERROR] Cannot apply ZCash configurations...")
 	exit 1
 fi
+echo "[INFO] Applying ZCash configurations...OK."
 
 # Install ZCash
 echo "[INFO] Installing ZCash..."
@@ -68,5 +79,6 @@ if [ "$?" != "0" ]; then
 	(>2& echo "[ERROR] Cannot install zcash-cli")
 	exit 1
 fi
+echo "[INFO] Installing ZCash...OK."
 
 echo "[INFO] Installation completed."

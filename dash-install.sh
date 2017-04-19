@@ -4,6 +4,11 @@ if [ "$#" != "2" ]; then
 	exit 1
 fi
 
+# Cleaning previous installation
+echo "[INFO] Cleaning previous installation..."
+sudo rm -rf ~/.dash
+echo "[INFO] Cleaning previous installation...OK."
+
 # Creating working directory for dash
 echo "[INFO] Creating working directory for Dash..."
 mkdir ~/.dash
