@@ -7,8 +7,7 @@ echo "[INFO] Clearning previous installation...OK."
 echo "[INFO] Installing docker..."
 sudo apt-get -y remove docker docker-engine
 if [ "$?" != "0" ]; then
-	(>&2 echo "[ERROR] Cannot remove docker and/or docker-engine")
-	exit 1
+	(>&2 echo "[WARNING] Cannot remove docker and/or docker-engine")
 fi
 sudo apt-get -y autoremove
 sudo apt-get -y install \
